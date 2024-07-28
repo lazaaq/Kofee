@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 # Create your models here.
 class Genre(models.Model):
@@ -14,3 +15,14 @@ class Film(models.Model):
 
     def __str__(self):
         return self.title
+    
+class History(models.Model):
+    userid = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)
+    filename = models.CharField(max_length=255)
+    image = models.ImageField(upload_to='images/')
+    timestamp = models.DateTimeField(auto_now_add=True)
+    label = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.filename
+

@@ -1,0 +1,208 @@
+{% extends 'dashboard/base_dashboard.html' %}
+
+
+{% block content %}
+<div class="container-fluid py-4">
+  <div class="row">
+    <div class="col-lg-7 mb-lg-0 mb-4">
+      <div class="card z-index-2 h-100">
+        <div class="card-header pb-0 pt-3 bg-transparent">
+          <h6 class="text-capitalize">Prediksi Penyakit</h6>
+        </div>
+        <div class="card-body py-0">
+          <form method="POST" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="image">Upload Image</label>
+                <input name="image" type="file" class="form-control my-2" id="inputImage">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+          <div style="font-size: 12px; margin-top: auto;">
+            Keterangan :
+            <ol>
+              <li>Gambar diharap memiliki background yang polos</li>
+              <li>Gambar diharap memiliki format landscape</li>
+              <li>Gambar diharap mengandung 1 daun kopi</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-5 mb-lg-0 mb-4">
+      <div class="card z-index-2 h-100">
+        <div class="card-header pb-0 pt-3 bg-transparent">
+          <h6 class="text-capitalize">Hasil Prediksi</h6>
+        </div>
+        <div class="card-body py-0" style="height: 300px!important;">
+          <div style="height: 200px;">
+            <div style="display: flex; flex-direction: column; height: 100%;">
+              <div>Gambar</div>
+              <div style="height: inherit; width: auto; border: 1px solid lightgrey;">
+                <img src='{{image}}' alt="#">
+              </div>
+            </div>  
+          </div>
+          <div style="height: 100px;">
+            <p class="mb-0">Label</p>
+            {% if label %}
+            <b>{{label}}</b>
+            {% else %}
+            <b>Belum ada prediksi</b>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-12 mb-lg-0 mb-4">
+      <div class="card ">
+        <div class="card-header pb-0 p-3">
+          <div class="d-flex justify-content-between">
+            <h6 class="mb-2">Riwayat Prediksi</h6>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table align-items-center ">
+            <tbody>
+              <tr>
+                <td class="text-center">Filename</td>
+                <td class="text-center">Gambar</td>
+                <td class="text-center">Label</td>
+                <td class="text-center">Timestamp</td>
+              </tr>
+              {% for history in histories %}
+              <tr>
+                <td class="w-30">
+                  <div class="px-2 py-1">
+                    <h6 class="text-sm text-center mb-0">{{history.filename}}</h6>
+                  </div>
+                </td>
+                <td>
+                  <div class="text-center">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalhistory{{forloop.counter}}">
+                      Lihat
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="modalhistory{{forloop.counter}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered modal-lg">
+                        <div class="modal-content">
+                          <div class="modal-body">
+                            <img src="{{history.image}}" alt="" width="100%" height="auto">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="text-center">
+                    <h6 class="text-sm mb-0">{{history.label}}</h6>
+                  </div>
+                </td>
+                <td class="align-middle text-sm">
+                  <div class="col text-center">
+                    <h6 class="text-sm mb-0">{{history.timestamp}}</h6>
+                  </div>
+                </td>
+              </tr>
+              {% endfor %}
+              <!-- <tr>
+                <td class="w-30">
+                  <div class="px-2 py-1">
+                    <h6 class="text-sm text-center mb-0">99.jpg</h6>
+                  </div>
+                </td>
+                <td>
+                  <div class="text-center">
+                    <span class="badge bg-primary">Lihat</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="text-center">
+                    <h6 class="text-sm mb-0">Rust</h6>
+                  </div>
+                </td>
+                <td class="align-middle text-sm">
+                  <div class="col text-center">
+                    <h6 class="text-sm mb-0">24 Agustus 2024 12:19:00</h6>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="w-30">
+                  <div class="px-2 py-1">
+                    <h6 class="text-sm text-center mb-0">3.jpg</h6>
+                  </div>
+                </td>
+                <td>
+                  <div class="text-center">
+                    <span class="badge bg-primary">Lihat</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="text-center">
+                    <h6 class="text-sm mb-0">Miner</h6>
+                  </div>
+                </td>
+                <td class="align-middle text-sm">
+                  <div class="col text-center">
+                    <h6 class="text-sm mb-0">31 July 2024 10:10:10</h6>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="w-30">
+                  <div class="px-2 py-1">
+                    <h6 class="text-sm text-center mb-0">912.jpg</h6>
+                  </div>
+                </td>
+                <td>
+                  <div class="text-center">
+                    <span class="badge bg-primary">Lihat</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="text-center">
+                    <h6 class="text-sm mb-0">Phoma</h6>
+                  </div>
+                </td>
+                <td class="align-middle text-sm">
+                  <div class="col text-center">
+                    <h6 class="text-sm mb-0">04 April 2024 00:59:01</h6>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="w-30">
+                  <div class="px-2 py-1">
+                    <h6 class="text-sm text-center mb-0">10.jpg</h6>
+                  </div>
+                </td>
+                <td>
+                  <div class="text-center">
+                    <span class="badge bg-primary">Lihat</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="text-center">
+                    <h6 class="text-sm mb-0">Healthy</h6>
+                  </div>
+                </td>
+                <td class="align-middle text-sm">
+                  <div class="col text-center">
+                    <h6 class="text-sm mb-0">9 December 2024 19:07:31</h6>
+                  </div>
+                </td>
+              </tr> -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

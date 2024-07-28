@@ -4,11 +4,13 @@ import tensorflow as tf
 from tensorflow.keras.preprocessing.image import img_to_array
 from tensorflow.keras.utils import load_img
 from tensorflow.keras.models import load_model
-import time
+from datetime import datetime
+import os
 
 
 def preprocessImage(image):
-    file_name = "temp.jpg"
+    file_name = os.path.splitext(image.name)[0]
+    file_name = file_name + "_" + str(datetime.now().strftime("%Y%m%d%H%M%S")) + '.jpg'
     file_name_2 = default_storage.save(file_name, image)
     file_url = default_storage.url(file_name_2)
     file_url = '/Users/lazaaq/Documents/tugas akhir/6. Web/GIthub Repo/Kofee' + file_url
@@ -16,10 +18,10 @@ def preprocessImage(image):
     img_array = img_to_array(original)
     img_array = img_array / 255.0
     img_array = np.expand_dims(img_array, axis=0)
-    return img_array
+    return img_array, file_name
 
 def analyzeImage(image):
-    img_array = preprocessImage(image)
+    img_array, file_name = preprocessImage(image)
     model = load_model('/Users/lazaaq/Documents/tugas akhir/5. multiclass classification BRACOL/notebooks/20240721 ResNet50 - 100epoch, 0.92 on test/best_weights_resnet.keras')
     
     # Predict class probabilities
@@ -31,6 +33,6 @@ def analyzeImage(image):
     
     classes = ["cercospora", "healthy", "miner", "phoma", "rust"]
 
-    return classes[predicted_class]
+    return classes[predicted_class], file_name
 
     
