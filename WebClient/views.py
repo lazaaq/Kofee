@@ -4,8 +4,10 @@ from django.urls import reverse
 from .helper import analyzeImage
 from .models import History
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+@login_required
 def home(request):
     if request.method == 'GET':
         context = {'title': 'Dashboard | Kofee'}
