@@ -6,14 +6,17 @@ from tensorflow.keras.utils import load_img
 from tensorflow.keras.models import load_model
 from datetime import datetime
 import os
+from django.conf import settings
 
+def getImageFilenameTimestamp(image_filename):
+    file_name, extension = os.path.splitext(image_filename)
+    file_name = file_name + "_" + str(datetime.now().strftime("%Y%m%d%H%M%S")) + extension
+    return file_name
 
 def preprocessImage(image):
-    file_name = os.path.splitext(image.name)[0]
-    file_name = file_name + "_" + str(datetime.now().strftime("%Y%m%d%H%M%S")) + '.jpg'
-    file_name_2 = default_storage.save(file_name, image)
-    file_url = default_storage.url(file_name_2)
-    file_url = '/Users/lazaaq/Documents/tugas akhir/6. Web/GIthub Repo/Kofee' + file_url
+    file_name = getImageFilenameTimestamp(image.name)
+    file_name_2 = settings.MEDIA_ROOT + "/images/" + file_name
+    file_url = file_name_2
     original = load_img(file_url, target_size=(224, 224))
     img_array = img_to_array(original)
     img_array = img_array / 255.0

@@ -32,24 +32,38 @@
     <div class="col-lg-5 mb-lg-0 mb-4">
       <div class="card z-index-2 h-100">
         <div class="card-header pb-0 pt-3 bg-transparent">
-          <h6 class="text-capitalize">Hasil Prediksi</h6>
+          <h6 class="text-capitalize">Hasil Prediksi Terakhir</h6>
         </div>
         <div class="card-body py-0" style="height: 300px!important;">
           <div style="height: 200px;">
             <div style="display: flex; flex-direction: column; height: 100%;">
               <div>Gambar</div>
-              <div style="height: inherit; width: auto; border: 1px solid lightgrey;">
-                <img src='{{image}}' alt="#">
+              <div style="height: inherit; width: auto;">
+                {% if last_history %}
+                <img src='{{last_history.image}}' class="rounded" style="max-height: 100%; max-width: 100%;">
+                {% else %}
+                Belum ada prediksi
+                {% endif %}
               </div>
             </div>  
           </div>
-          <div style="height: 100px;">
-            <p class="mb-0">Label</p>
-            {% if label %}
-            <b>{{label}}</b>
-            {% else %}
-            <b>Belum ada prediksi</b>
-            {% endif %}
+          <div style="height: 100px; display: flex;">
+            <div style="width: 50%;">
+              <p class="mb-0">Label</p>
+              {% if last_history %}
+              <b>{{last_history.label}}</b>
+              {% else %}
+              <b>Belum ada prediksi</b>
+              {% endif %}
+            </div>
+            <div style="width: 50%;">
+              <p class="mb-0">Timestamp</p>
+              {% if last_history %}
+              <b>{{last_history.timestamp}}</b>
+              {% else %}
+              <b>Belum ada prediksi</b>
+              {% endif %}
+            </div>
           </div>
         </div>
       </div>

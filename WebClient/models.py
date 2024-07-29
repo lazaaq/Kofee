@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from .helper import getImageFilenameTimestamp
 
 # Create your models here.
 class Genre(models.Model):
@@ -16,13 +17,17 @@ class Film(models.Model):
     def __str__(self):
         return self.title
     
+def imageuploadfilename(instance, filename):
+    file_name = getImageFilenameTimestamp(filename)
+    return 'images/' + file_name
+
 class History(models.Model):
     userid = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)
-    filename = models.CharField(max_length=255)
-    image = models.ImageField(upload_to='images/')
+    filename = models.CharField(max_length=255, default="")
+    image = models.ImageField(upload_to=imageuploadfilename)
     timestamp = models.DateTimeField(auto_now_add=True)
-    label = models.CharField(max_length=255)
+    label = models.CharField(max_length=255, default="")
 
     def __str__(self):
-        return self.filename
+        return self.image
 
