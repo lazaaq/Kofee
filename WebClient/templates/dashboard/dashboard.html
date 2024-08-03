@@ -85,6 +85,7 @@
                 <td class="text-center">Gambar</td>
                 <td class="text-center">Label</td>
                 <td class="text-center">Timestamp</td>
+                <td class="text-center">Detail</td>
               </tr>
               {% for history in histories %}
               <tr>
@@ -95,21 +96,7 @@
                 </td>
                 <td>
                   <div class="text-center">
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalhistory{{forloop.counter}}">
-                      Lihat
-                    </button>
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="modalhistory{{forloop.counter}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog modal-dialog-centered modal-lg">
-                        <div class="modal-content">
-                          <div class="modal-body">
-                            <img src="{{history.image}}" alt="" width="100%" height="auto">
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    <img src="{{history.image}}" alt="" width="auto" height="50px">
                   </div>
                 </td>
                 <td>
@@ -120,6 +107,43 @@
                 <td class="align-middle text-sm">
                   <div class="col text-center">
                     <h6 class="text-sm mb-0">{{history.timestamp}}</h6>
+                  </div>
+                </td>
+                <td>
+                  <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalhistory{{forloop.counter}}">
+                    Lihat
+                  </button>
+
+                  <!-- Modal -->
+                  <div class="modal fade" id="modalhistory{{forloop.counter}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 style="margin-bottom: 0;">Detail Prediksi</h5>
+                        </div>
+                        <div class="modal-body">
+                          <div>
+                            <h6>Gambar</h6>
+                            <img src="{{history.image}}" alt="" width="100%" height="auto">
+                          </div>
+                          <div class="mt-3">
+                            <h6 class="mb-0">Label</h6>
+                            <p>{{history.label}}</p>
+                          </div>
+                          <div class="mt-3">
+                            <h6 class="mb-0">Treatment</h6>
+                            <div style="white-space: initial;">
+                              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia beatae autem totam! Fugiat voluptatum dicta veritatis quidem vitae suscipit totam odio, velit iusto doloremque quaerat tenetur perspiciatis porro deserunt soluta, magni accusamus beatae voluptate nihil et blanditiis unde explicabo. Libero commodi maiores incidunt facere nobis, architecto qui cumque porro cum debitis inventore, aspernatur consequatur! Nobis nesciunt accusamus, rerum illum earum voluptatibus sequi eos quisquam nam quo suscipit voluptate et aspernatur praesentium debitis soluta veniam! Quam aut magni minus quos quae deleniti incidunt ut, ad ab optio repellendus rem. Ipsum commodi a expedita quia, incidunt deleniti quisquam hic iusto iure ab?
+                            </div>
+                          </div>
+                          <div class="mt-3">
+                            <h6 class="mb-0">Timestamp</h6>
+                            <p>{{history.timestamp}}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </td>
               </tr>

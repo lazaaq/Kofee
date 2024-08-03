@@ -38,4 +38,5 @@ def analyzeImage(image):
 
     return classes[predicted_class], file_name
 
-    
+def change12HourTo24HourFormat(timestamp):
+    return datetime.strptime(timestamp, "%I:%M %p").strftime("%H:%M")

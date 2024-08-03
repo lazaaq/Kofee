@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.urls import reverse
-from .helper import analyzeImage
+from .helper import analyzeImage, change12HourTo24HourFormat
 from .models import History
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
@@ -20,6 +20,7 @@ def home(request):
 
         for history in histories:
             history.image = settings.MEDIA_URL + str(history.image)
+            history.timestamp = change12HourTo24HourFormat(history.timestamp.strftime("%I:%M %p")) + history.timestamp.strftime(", %d %B %Y")
 
         context['histories'] = histories
         context['last_history'] =  histories.first()
