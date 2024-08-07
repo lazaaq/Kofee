@@ -1,0 +1,42 @@
+[
+    {
+        "model": "WebClient.label",
+        "fields": {
+            "id": 1,
+            "name": "cercospora",
+            "treatment": "treatment for cercospora"
+        }
+    },
+    {
+        "model": "WebClient.label",
+        "fields": {
+            "id": 2,
+            "name": "healthy",
+            "treatment": "treatment for healthy"
+        }
+    },
+    {
+        "model": "WebClient.label",
+        "fields": {
+            "id": 3,
+            "name": "miner",
+            "treatment": "treatment for miner"
+        }
+    },
+    {
+        "model": "WebClient.label",
+        "fields": {
+            "id": 4,
+            "name": "phoma",
+            "treatment": "treatment for phoma"
+        }
+    },
+    {
+        "model": "WebClient.label",
+        "fields": {
+            "id": 5,
+            "name": "rust",
+            "treatment": "treatment for rust"
+        }
+    }
+]

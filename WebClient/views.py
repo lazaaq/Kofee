@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.urls import reverse
 from .helper import analyzeImage, change12HourTo24HourFormat
-from .models import History
+from .models import History, Label
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 
@@ -33,11 +33,18 @@ def home(request):
         new_history = History()
         new_history.userid = request.user
         new_history.image = request.FILES['image']
+        new_history.label_id = 2 # for temporary only
         new_history.save()
 
         image = request.FILES['image']
         labeledImage, file_name = analyzeImage(image)
-        new_history.label = labeledImage
+
+        labels = Label.objects.all()
+        for label in labels:
+            if label.name == labeledImage:
+                new_history.label_id = label.id
+                break
+            
         new_history.filename = file_name
         new_history.save()
 
