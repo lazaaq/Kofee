@@ -57,3 +57,23 @@ def petunjuk(request):
     return render(request,
                       template,
                       context)
+
+def profile(request):
+    if request.method == 'GET':
+        template = 'dashboard/profile.html'
+        context = {'title': 'Profil | Kofee', 'judul_halaman': "Profil"}
+        context['user'] = request.user
+        histories = History.objects.filter(userid=request.user).order_by('-timestamp')
+        context['jumlah_history_user'] = len(histories)
+        
+        return render(request,
+                    template,
+                    context)
+    elif request.method == 'POST':
+        user = request.user
+        user.username = request.POST['username']
+        user.first_name = request.POST['name']
+        user.email = request.POST['email']
+        user.save()
+
+        return redirect('profile')

@@ -1,0 +1,1 @@
+web gunicorn Kofee.wsgi:application --log-file -
