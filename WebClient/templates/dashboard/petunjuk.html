@@ -1,0 +1,69 @@
+{% extends 'dashboard/base_dashboard.html' %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <div class="row">
+      <div class="col-lg-12 mb-lg-0 mb-4">
+        <div class="card h-100">
+          <div class="card-header pb-0 pt-3 bg-transparent">
+            <h4 class="text-capitalize">Mengenai Aplikasi</h4>
+          </div>
+          <div class="card-body py-0 pb-3">
+            <div>
+              Aplikasi ini dibuat untuk memudahkan petani kopi dalam mendiagnosa hama tanaman kopi yang menyerang tanaman kopi mereka. Aplikasi ini juga memberikan informasi tentang hama tanaman kopi yang menyerang tanaman kopi dan cara mengatasinya. 
+            </div>
+            <div class="mt-3">
+              <h5>Cara Menggunakan Aplikasi</h5>
+            </div>
+            <ol>
+              <li>
+                Login menggunakan akun yang sudah terdaftar. Jika belum memiliki akun, dapat mendaftar di halaman registrasi. Setelah login akan diarahkan ke halaman dashboard. 
+              </li>
+              <li>
+                <div>
+                  Foto daun tanaman kopi yang ingin di diagnosa hama tanaman kopi. Pastikan foto yang diambil memiliki kualitas yang baik agar hasil diagnosa lebih akurat. Berikut adalah contoh gambar yang memiliki kualitas baik. Perhatikan bahwa gambar hanya mengandung 1 daun dan gambar memiliki background polos. Hal ini penting agar sistem dapat memproses gambar dengan baik.
+                </div>
+                <div class="row justify-content-center">
+                  <div class="col-12 col-md-6 col-lg-4 p-2 text-center">
+                    <img src="/media/sample_image/1251_cercospora.jpg" alt="" width="100%" height="auto">
+                    <div style="font-size: small;">Contoh 1 : Cercospora</div>
+                  </div>
+                  <div class="col-12 col-md-6 col-lg-4 p-2 text-center">
+                    <img src="/media/sample_image/884_healthy.jpg" alt="" width="100%" height="auto">
+                    <div style="font-size: small;">Contoh 2 : Sehat</div>
+                  </div>
+                  <div class="col-12 col-md-6 col-lg-4 p-2 text-center">
+                    <img src="/media/sample_image/98_rust.jpg" alt="" width="100%" height="auto">
+                    <div style="font-size: small;">Contoh 3 : Rust</div>
+                  </div>
+                  <div class="col-12 col-md-6 col-lg-4 p-2 text-center">
+                    <img src="/media/sample_image/21_miner.jpg" alt="" width="100%" height="auto">
+                    <div style="font-size: small;">Contoh 4 : Miner</div>
+                  </div>
+                  <div class="col-12 col-md-6 col-lg-4 p-2 text-center">
+                    <img src="/media/sample_image/20_phoma.jpg" alt="" width="100%" height="auto">
+                    <div style="font-size: small;">Contoh 5 : Phoma</div>
+                  </div>
+                </div> 
+              </li>
+              <li>
+                Pindah foto ke perangkat ini untuk nantinya di upload ke sistem.
+              </li>
+              <li>
+                Di halaman dashboard terdapat kotak berwarna putih dan tertulis judul "Prediksi Penyakit". Dibawah tulisan "upload image", silahkan klik tombol "Choose File". Halaman pop up akan muncul dan silahkan pilih gambar yang ingin di diagnosa. 
+              </li>
+              <li>
+                Setelah gambar terupload, klik tombol "Diagnosa". Sistem akan memproses gambar yang diupload dan menampilkan hasil diagnosa.
+              </li>
+              <li>
+                Ketika selesai diagnosa, sistem akan menampilkan hasil diagnosa dan informasi tentang hama tanaman kopi yang menyerang tanaman kopi. Hasil diagnosa ada di bagian bawah dari halaman dashboard. Di kotak dengan judul "Riwayat Prediksi" akan menampilkan hasil diagnosa yang sudah dilakukan sebelumnya. Dan pada tabel paling atas, akan menampilkan hasil diagnosa yang baru saja dilakukan.
+              </li>
+              <li>
+                Jika ingin melihat informasi lebih lanjut tentang hama tanaman kopi yang menyerang tanaman kopi, silahkan klik tombol "Detail" pada hasil diagnosa yang ingin dilihat informasi lebih lanjutnya. Ketika di klik, akan muncul halaman pop up yang berisi informasi tentang hama tanaman kopi yang menyerang tanaman kopi dan cara mengatasinya beserta dengan waktu diagnosa dilakukan.
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}

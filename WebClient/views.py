@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def home(request):
     if request.method == 'GET':
-        context = {'title': 'Dashboard | Kofee'}
+        context = {'title': 'Dashboard | Kofee', 'judul_halaman': "Dashboard"}
 
         if request.session.get('last_history', False):
             context['last_history'] = request.session['last_history']
@@ -49,3 +49,11 @@ def home(request):
         new_history.save()
 
         return redirect('home')
+
+def petunjuk(request):
+    template = 'dashboard/petunjuk.html'
+    context = {'title': 'Petunjuk | Kofee', 'judul_halaman': "Petunjuk Penggunaan"}
+    
+    return render(request,
+                      template,
+                      context)

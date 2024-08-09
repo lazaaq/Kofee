@@ -5,7 +5,7 @@
 <div class="container-fluid py-4">
   <div class="row">
     <div class="col-lg-7 mb-lg-0 mb-4">
-      <div class="card z-index-2 h-100">
+      <div class="card h-100">
         <div class="card-header pb-0 pt-3 bg-transparent">
           <h6 class="text-capitalize">Prediksi Penyakit</h6>
         </div>
@@ -16,7 +16,7 @@
                 <label for="image">Upload Image</label>
                 <input name="image" type="file" class="form-control my-2" id="inputImage">
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Mulai Diagnosa</button>
           </form>
           <div style="font-size: 12px; margin-top: auto;">
             Keterangan :
@@ -26,11 +26,51 @@
               <li>Gambar diharap mengandung 1 daun kopi</li>
             </ol>
           </div>
+          <div>
+            <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#contohgambar">
+              Contoh
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="contohgambar" tabindex="-1" aria-labelledby="contohgambar" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 style="margin-bottom: 0;">Contoh Gambar</h5>
+                  </div>
+                  <div class="modal-body">
+                    <div class="row justify-content-center">
+                      <div class="col-12 col-md-6 col-lg-4 p-2 text-center">
+                        <img src="/media/sample_image/1251_cercospora.jpg" alt="" width="100%" height="auto">
+                        <div style="font-size: small;">Contoh 1 : Cercospora</div>
+                      </div>
+                      <div class="col-12 col-md-6 col-lg-4 p-2 text-center">
+                        <img src="/media/sample_image/884_healthy.jpg" alt="" width="100%" height="auto">
+                        <div style="font-size: small;">Contoh 2 : Sehat</div>
+                      </div>
+                      <div class="col-12 col-md-6 col-lg-4 p-2 text-center">
+                        <img src="/media/sample_image/98_rust.jpg" alt="" width="100%" height="auto">
+                        <div style="font-size: small;">Contoh 3 : Rust</div>
+                      </div>
+                      <div class="col-12 col-md-6 col-lg-4 p-2 text-center">
+                        <img src="/media/sample_image/21_miner.jpg" alt="" width="100%" height="auto">
+                        <div style="font-size: small;">Contoh 4 : Miner</div>
+                      </div>
+                      <div class="col-12 col-md-6 col-lg-4 p-2 text-center">
+                        <img src="/media/sample_image/20_phoma.jpg" alt="" width="100%" height="auto">
+                        <div style="font-size: small;">Contoh 5 : Phoma</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
     <div class="col-lg-5 mb-lg-0 mb-4">
-      <div class="card z-index-2 h-100">
+      <div class="card h-100">
         <div class="card-header pb-0 pt-3 bg-transparent">
           <h6 class="text-capitalize">Hasil Prediksi Terakhir</h6>
         </div>

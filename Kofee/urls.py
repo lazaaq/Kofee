@@ -25,7 +25,8 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
-    path('app/', include('WebClient.urls')),
+    path('petunjuk/', views.petunjuk, name='petunjuk'),
+    # path('app/', include('WebClient.urls')),
 ]
 
 if settings.DEBUG:
