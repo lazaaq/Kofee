@@ -170,10 +170,11 @@
           <input type="password" name="password2" autocomplete="new-password" required="" aria-describedby="id_password2_helptext" id="id_password2" placeholder="Password Confirm">
         </div>
         <button type="submit" style="margin-top: 1rem;">Sign Up</button>
-        <div class="social" style="display: flex; justify-content: center;">
+        <div style="text-align: center; margin-top: 1rem;">Or <a href="{% url 'login' %}">log in here</a></div>
+        <!-- <div class="social" style="display: flex; justify-content: center;">
           <div class="go" style="width: 100%"><i class="fab fa-google"></i>  Google</div>
           <div class="fb" style="width: 100%"><i class="fab fa-facebook"></i>  Facebook</div>
-        </div>
+        </div> -->
       </form>
     </div>
 </body>
