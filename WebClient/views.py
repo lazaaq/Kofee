@@ -17,10 +17,15 @@ def home(request):
 
         template = 'dashboard/dashboard.html'
         histories = History.objects.filter(userid=request.user).order_by('-timestamp')
+        labels = Label.objects.all()
 
         for history in histories:
             history.image = settings.MEDIA_URL + str(history.image)
             history.timestamp = change12HourTo24HourFormat(history.timestamp.strftime("%I:%M %p")) + history.timestamp.strftime(", %d %B %Y")
+            for label in labels:
+                if history.label_id == label.id:
+                    history.treatment = label.treatment
+                    break
 
         context['histories'] = histories
         context['last_history'] =  histories.first()

@@ -4,7 +4,7 @@
         "fields": {
             "id": 1,
             "name": "cercospora",
-            "treatment": "treatment for cercospora"
+            "treatment": "<ol><li><b>Gunakan fungisida kimia:</b> Anda bisa menggunakan fungisida seperti mancozeb yang terdapat pada produk seperti Dhitane atau Delsene. Fungisida ini membantu mengendalikan penyakit cercospora.</li><li><b>Kurangi kelembapan:</b> Untuk mengurangi kelembapan, kurangi penyiraman tanaman dan rapikan atap peneduh agar sinar matahari bisa langsung masuk ke tanaman. Kelembapan yang terlalu tinggi dapat memperburuk penyakit cercospora.</li> <li><b>Sanitasi tanaman:</b> Gunting daun yang sudah terkena penyakit, kemudian bakar atau benamkan daun tersebut ke dalam tanah agar penyakit tidak menyebar. </li> <li><b>Atur peneduh:</b> Mengurangi jumlah naungan di sekitar tanaman dapat membantu mengurangi penyakit pada buah kopi.</li></ol> <br> <b>Referensi:</b> <br> <a href='https://repository.pertanian.go.id/server/api/core/bitstreams/1a41d808-3997-4671-b574-df32765da108/content'>https://repository.pertanian.go.id/server/api/core/bitstreams/1a41d808-3997-4671-b574-df32765da108/content</a>"
         }
     },
     {
@@ -12,7 +12,7 @@
         "fields": {
             "id": 2,
             "name": "healthy",
-            "treatment": "treatment for healthy"
+            "treatment": "Tidak dibutuhkan perawatan"
         }
     },
     {
@@ -20,7 +20,7 @@
         "fields": {
             "id": 3,
             "name": "miner",
-            "treatment": "treatment for miner"
+            "treatment": "<ol><li><b>Pengendalian bersama:</b> Agar pengendalian hama ini efektif, penting bagi seluruh petani di wilayah yang sama untuk melakukan tindakan pengendalian secara serentak. Baik dengan cara kultur teknis, mekanis, maupun biologis.</li> <li><b>Kultur teknis:</b> <ul><li>Usahakan menggunakan jenis tanaman yang seragam dan melakukan pemeliharaan dengan cara yang sama, sehingga waktu berbuahnya bisa serentak. Hal ini memudahkan tindakan mekanis untuk menghentikan siklus hidup hama.</li> <li>Sebelum melakukan tindakan mekanis, bersihkan gulma terlebih dahulu agar buah yang jatuh mudah dikumpulkan kembali.</li></ul></li> <li><b>Pengendalian secara biologis: </b> <ul><li>Ambil buah kopi yang terserang hama dengan cara memetik buah yang sudah terserang, baik secara petik bubuk, rampasan, atau lelesan. </li> <li>Agar lebih efektif, lakukan pengambilan buah terserang ini secara serentak, terutama saat buah di lapangan sedang sedikit, yaitu sebelum atau sesudah pembungaan.</li> <li>Buah yang terkumpul direndam dalam air panas selama 5 menit untuk membunuh hama.</li> <li>Aplikasikan jamur Beauveria bassiana sebanyak 2 kg per hektar sebanyak 2-3 kali dalam satu musim. Penyemprotan pertama dilakukan saat buah kopi masih muda (sekitar 3 bulan setelah pembungaan), dan diulangi setelah 1 bulan.</li> <li>Penyemprotan dilakukan pada pagi hari sebelum jam 9 pagi atau sore hari setelah jam 4 sore, dengan sasaran buah kopi yang sedang dalam dompolan.</li></ul></li></ol> <br> <b>Referensi:</b> <br> <a href='https://distanpangan.baliprov.go.id/upaya-pengendalian-hama-penggerek-buah-kopi-pbko-secara-terpadu/'>https://distanpangan.baliprov.go.id/upaya-pengendalian-hama-penggerek-buah-kopi-pbko-secara-terpadu/</a>"
         }
     },
     {
@@ -36,7 +36,7 @@
         "fields": {
             "id": 5,
             "name": "rust",
-            "treatment": "treatment for rust"
+            "treatment": "<ol><li>   <b>Gunakan jenis kopi yang tahan penyakit:</b> Ada beberapa jenis kopi yang tahan terhadap karat daun, seperti varietas S795 dan USDA762. Menanam kopi dari varietas ini bisa membantu mencegah serangan penyakit.</li>   <li><b>Lakukan perawatan rutin pada tanaman:</b> Perawatan teknis seperti membersihkan gulma, memberikan pupuk, memangkas cabang yang tidak perlu, dan mengelola naungan tanaman secara baik bisa mengurangi serangan karat daun.</li><li>    <b>Gunakan fungisida alami:</b> Ekstrak biji mahoni dengan konsentrasi 0,1-0,2% telah terbukti efektif mengurangi penyakit karat daun. Ini bisa jadi alternatif yang aman dan alami.</li><li>   <b>Penggunaan fungisida kimia:</b> Jika perlu menggunakan fungisida kimia, pilihlah yang mengandung bahan tembaga, seperti tembaga oksida atau tembaga sulfat. Fungisida ini bekerja dengan baik jika diaplikasikan sebelum daun terinfeksi (sebagai pencegahan). Namun, gunakan dengan hati-hati karena pemakaian berlebihan dapat merusak tanah dan lingkungan sekitar. Misalnya, Nordox atau Kocide dapat digunakan dengan konsentrasi 0,3%, setiap dua minggu sekali. Untuk fungisida sistemik seperti Bayleton atau Tilt, gunakan dengan konsentrasi 0,1% satu atau dua kali aplikasi.</li></ol> <br> <br> <b>Referensi:</b> <br> <a href='https://repository.pertanian.go.id/server/api/core/bitstreams/1a41d808-3997-4671-b574-df32765da108/content'>https://repository.pertanian.go.id/server/api/core/bitstreams/1a41d808-3997-4671-b574-df32765da108/content</a>"
         }
     }
 ]
