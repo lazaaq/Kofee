@@ -27,7 +27,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('petunjuk/', views.petunjuk, name='petunjuk'),
     path('profile/', views.profile, name='profile'),
-    # path('app/', include('WebClient.urls')),
 ]
 
 if settings.DEBUG:
