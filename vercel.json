@@ -23,6 +23,5 @@
       "src": "/(.*)",
       "dest": "Kofee/wsgi.py"
     }
-  ],
-  "outputDirectory": "ui/staticfiles"
+  ]
 }
