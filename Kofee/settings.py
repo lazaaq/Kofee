@@ -33,7 +33,7 @@ SECRET_KEY = 'django-insecure-arp859r5j+44$#r5e^p&i#ql-^rmb10ml@58741luda_5v8bt8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*', '.vercel.app', '.now.sh']
 
 
 # Application definition
@@ -142,5 +142,5 @@ LOGIN_URL = "login"
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-# STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 django_heroku.settings(locals())
