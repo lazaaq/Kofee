@@ -25,7 +25,7 @@ def preprocessImage(image):
 
 def analyzeImage(image):
     img_array, file_name = preprocessImage(image)
-    model = load_model('/Users/lazaaq/Documents/tugas akhir/5. multiclass classification BRACOL/notebooks/14/best_weights_resnet.keras')
+    model = load_model('/Users/lazaaq/Documents/tugas akhir/5. multiclass classification BRACOL/notebooks/ResNet Eksperimen 5/best_weights_resnet.keras')
     
     # Predict class probabilities
     predictions = model.predict(img_array)
