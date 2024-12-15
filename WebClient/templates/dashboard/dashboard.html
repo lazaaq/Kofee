@@ -7,7 +7,7 @@
     <div class="col-lg-7 mb-lg-0 mb-4">
       <div class="card h-100">
         <div class="card-header pb-0 pt-3 bg-transparent">
-          <h6 class="text-capitalize">Prediksi Penyakit</h6>
+          <h6 class="text-capitalize">Disease Prediction</h6>
         </div>
         <div class="card-body py-0">
           <form method="POST" action="" enctype="multipart/form-data">
@@ -16,19 +16,19 @@
                 <label for="image">Upload Image</label>
                 <input name="image" type="file" class="form-control my-2" id="inputImage">
             </div>
-            <button type="submit" class="btn btn-primary">Mulai Diagnosa</button>
+            <button type="submit" class="btn btn-primary">Start Diagnose</button>
           </form>
           <div style="font-size: 12px; margin-top: auto;">
-            Keterangan :
+            Description:
             <ol>
-              <li>Gambar diharap memiliki background yang polos</li>
-              <li>Gambar diharap memiliki format landscape</li>
-              <li>Gambar diharap mengandung 1 daun kopi</li>
+              <li>The image is expected to have a plain background</li>
+              <li>The image is expected to have a landscape format</li>
+              <li>The image is expected to contain 1 coffee leaf</li>
             </ol>
           </div>
           <div>
             <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#contohgambar">
-              Contoh
+              Example
             </button>
 
             <!-- Modal -->
@@ -36,29 +36,29 @@
               <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 style="margin-bottom: 0;">Contoh Gambar</h5>
+                    <h5 style="margin-bottom: 0;">Image Examples</h5>
                   </div>
                   <div class="modal-body">
                     <div class="row justify-content-center">
                       <div class="col-12 col-md-6 col-lg-4 p-2 text-center">
                         <img src="/media/sample_image/1251_cercospora.jpg" alt="" width="100%" height="auto">
-                        <div style="font-size: small;">Contoh 1 : Cercospora</div>
+                        <div style="font-size: small;">Example 1 : Cercospora</div>
                       </div>
                       <div class="col-12 col-md-6 col-lg-4 p-2 text-center">
                         <img src="/media/sample_image/884_healthy.jpg" alt="" width="100%" height="auto">
-                        <div style="font-size: small;">Contoh 2 : Sehat</div>
+                        <div style="font-size: small;">Example 2 : Sehat</div>
                       </div>
                       <div class="col-12 col-md-6 col-lg-4 p-2 text-center">
                         <img src="/media/sample_image/98_rust.jpg" alt="" width="100%" height="auto">
-                        <div style="font-size: small;">Contoh 3 : Rust</div>
+                        <div style="font-size: small;">Example 3 : Rust</div>
                       </div>
                       <div class="col-12 col-md-6 col-lg-4 p-2 text-center">
                         <img src="/media/sample_image/21_miner.jpg" alt="" width="100%" height="auto">
-                        <div style="font-size: small;">Contoh 4 : Miner</div>
+                        <div style="font-size: small;">Example 4 : Miner</div>
                       </div>
                       <div class="col-12 col-md-6 col-lg-4 p-2 text-center">
                         <img src="/media/sample_image/20_phoma.jpg" alt="" width="100%" height="auto">
-                        <div style="font-size: small;">Contoh 5 : Phoma</div>
+                        <div style="font-size: small;">Example 5 : Phoma</div>
                       </div>
                     </div>
                   </div>
@@ -72,36 +72,36 @@
     <div class="col-lg-5 mb-lg-0 mb-4">
       <div class="card h-100">
         <div class="card-header pb-0 pt-3 bg-transparent">
-          <h6 class="text-capitalize">Hasil Prediksi Terakhir</h6>
+          <h6 class="text-capitalize">Last Prediction</h6>
         </div>
         <div class="card-body py-0" style="height: 300px!important;">
           <div style="height: 200px;">
             <div style="display: flex; flex-direction: column; height: 100%;">
-              <div>Gambar</div>
+              <div>Image</div>
               <div style="height: inherit; width: auto;">
                 {% if last_history %}
                 <img src='{{last_history.image}}' class="rounded" style="max-height: 100%; max-width: 100%;">
                 {% else %}
-                Belum ada prediksi
+                No prediction yet
                 {% endif %}
               </div>
             </div>  
           </div>
           <div style="height: 100px; display: flex;">
             <div style="width: 50%;">
-              <p class="mb-0">Penyakit</p>
+              <p class="mb-0">Disease</p>
               {% if last_history %}
               <b>{{last_history.label}}</b>
               {% else %}
-              <b>Belum ada prediksi</b>
+              <b>No prediction yet</b>
               {% endif %}
             </div>
             <div style="width: 50%;">
-              <p class="mb-0">Timestamp</p>
+              <p class="mb-0">Timestamps</p>
               {% if last_history %}
               <b>{{last_history.timestamp}}</b>
               {% else %}
-              <b>Belum ada prediksi</b>
+              <b>No prediction yet</b>
               {% endif %}
             </div>
           </div>
@@ -114,7 +114,7 @@
       <div class="card ">
         <div class="card-header pb-0 p-3">
           <div class="d-flex justify-content-between">
-            <h6 class="mb-2">Riwayat Prediksi</h6>
+            <h6 class="mb-2">Prediction History</h6>
           </div>
         </div>
         <div class="table-responsive">
@@ -122,9 +122,9 @@
             <tbody>
               <tr>
                 <td class="text-center">Filename</td>
-                <td class="text-center">Gambar</td>
-                <td class="text-center">Penyakit</td>
-                <td class="text-center">Timestamp</td>
+                <td class="text-center">Image</td>
+                <td class="text-center">Disease</td>
+                <td class="text-center">Timestamps</td>
                 <td class="text-center">Detail</td>
               </tr>
               {% for history in histories %}
@@ -160,15 +160,15 @@
                     <div class="modal-dialog modal-dialog-centered modal-lg">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h5 style="margin-bottom: 0;">Detail Prediksi</h5>
+                          <h5 style="margin-bottom: 0;">Prediction Detail</h5>
                         </div>
                         <div class="modal-body">
                           <div>
-                            <h6>Gambar</h6>
+                            <h6>Image</h6>
                             <img src="{{history.image}}" alt="" width="100%" height="auto">
                           </div>
                           <div class="mt-3">
-                            <h6 class="mb-0">Penyakit</h6>
+                            <h6 class="mb-0">Disease</h6>
                             <p>{{history.label}}</p>
                           </div>
                           <div class="mt-3">
@@ -178,7 +178,7 @@
                             </div>
                           </div>
                           <div class="mt-3">
-                            <h6 class="mb-0">Timestamp</h6>
+                            <h6 class="mb-0">Timestamps</h6>
                             <p>{{history.timestamp}}</p>
                           </div>
                         </div>
