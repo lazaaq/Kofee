@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.urls import reverse
@@ -25,7 +26,7 @@ def home(request):
                     break
 
         context['histories'] = histories
-        context['last_history'] =  histories.first()
+        context['last_history'] =  histories.first() if histories.exists() else None
 
         return render(request,
                       template,
