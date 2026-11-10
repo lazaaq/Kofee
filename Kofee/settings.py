@@ -12,28 +12,33 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
-import django_heroku
-import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.environ.get('MEDIA_ROOT', os.path.join(BASE_DIR, 'media'))
 MEDIA_URL = '/media/'
+
+# Path to the TFLite (preferred) or Keras model used for leaf classification
+MODEL_PATH = os.environ.get('MODEL_PATH', os.path.join(BASE_DIR, 'model', 'kofee_resnet.tflite'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-arp859r5j+44$#r5e^p&i#ql-^rmb10ml@58741luda_5v8bt8'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-arp859r5j+44$#r5e^p&i#ql-^rmb10ml@58741luda_5v8bt8')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG', '1') == '1'
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', '*').split(',')
+CSRF_TRUSTED_ORIGINS = [o for o in os.environ.get('DJANGO_CSRF_TRUSTED_ORIGINS', '').split(',') if o]
+
+# Running behind nginx + Cloudflare Tunnel, which terminate TLS
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+if not DEBUG:
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
 
 
 # Application definition
@@ -53,14 +58,13 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
-    "whitenoise.middleware.WhiteNoiseMiddleware", # whitenoise
 ]
 
 ROOT_URLCONF = 'Kofee.urls'
@@ -90,7 +94,7 @@ WSGI_APPLICATION = 'Kofee.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': os.environ.get('DATABASE_PATH', BASE_DIR / 'db.sqlite3'),
     }
 }
 
@@ -130,6 +134,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STORAGES = {
+    'default': {'BACKEND': 'django.core.files.storage.FileSystemStorage'},
+    'staticfiles': {'BACKEND': 'whitenoise.storage.CompressedStaticFilesStorage'},
+}
+
+# Max upload size for leaf images (10 MB)
+DATA_UPLOAD_MAX_MEMORY_SIZE = 10 * 1024 * 1024
+FILE_UPLOAD_MAX_MEMORY_SIZE = 10 * 1024 * 1024
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -142,7 +155,3 @@ LOGOUT_REDIRECT_URL = "home"
 LOGIN_URL = "login"
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
-django_heroku.settings(locals())

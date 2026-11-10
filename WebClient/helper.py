@@ -1,42 +1,88 @@
-from django.core.files.storage import default_storage
-import numpy as np
-import tensorflow as tf
-from tensorflow.keras.preprocessing.image import img_to_array
-from tensorflow.keras.utils import load_img
-from tensorflow.keras.models import load_model
-from datetime import datetime
 import os
+import threading
+from datetime import datetime
+
+import numpy as np
 from django.conf import settings
+from PIL import Image
+
+CLASSES = ["cercospora", "healthy", "miner", "phoma", "rust"]
+IMAGE_SIZE = (224, 224)
+
+
+class ModelUnavailableError(RuntimeError):
+    """Raised when the classification model file is missing or cannot be loaded."""
+
 
 def getImageFilenameTimestamp(image_filename):
     file_name, extension = os.path.splitext(image_filename)
     file_name = file_name + "_" + str(datetime.now().strftime("%Y%m%d%H%M%S")) + extension
     return file_name
 
-def preprocessImage(image):
-    file_name = getImageFilenameTimestamp(image.name)
-    file_name_2 = settings.MEDIA_ROOT + "/images/" + file_name
-    file_url = file_name_2
-    original = load_img(file_url, target_size=(224, 224))
-    img_array = img_to_array(original)
-    img_array = img_array / 255.0
-    img_array = np.expand_dims(img_array, axis=0)
-    return img_array, file_name
 
-def analyzeImage(image):
-    img_array, file_name = preprocessImage(image)
-    model = load_model('/Users/lazaaq/Documents/tugas akhir/5. multiclass classification BRACOL/notebooks/ResNet Eksperimen 5/best_weights_resnet.keras')
-    
-    # Predict class probabilities
-    predictions = model.predict(img_array)
-    
-    # Convert predictions to class indices
-    predicted_class = np.argmax(predictions, axis=1)
-    predicted_class = predicted_class[0]
-    
-    classes = ["cercospora", "healthy", "miner", "phoma", "rust"]
+def preprocessImage(image_path):
+    # Same as keras load_img(target_size=(224, 224)) (nearest interpolation) + img_to_array / 255
+    with Image.open(image_path) as original:
+        original = original.convert("RGB").resize(IMAGE_SIZE, Image.NEAREST)
+        img_array = np.asarray(original, dtype=np.float32) / 255.0
+    return np.expand_dims(img_array, axis=0)
 
-    return classes[predicted_class], file_name
+
+class _Classifier:
+    """Loads the model once per process and runs predictions.
+
+    A ``.tflite`` model runs on the lightweight LiteRT runtime (used in production);
+    any other extension (``.keras`` / ``.h5``) falls back to full TensorFlow.
+    """
+
+    def __init__(self):
+        self._lock = threading.Lock()
+        self._predict = None
+
+    def _load(self):
+        path = settings.MODEL_PATH
+        if not os.path.exists(path):
+            raise ModelUnavailableError(f"Model file not found: {path}")
+
+        if path.endswith(".tflite"):
+            from ai_edge_litert.interpreter import Interpreter
+
+            interpreter = Interpreter(model_path=path, num_threads=2)
+            interpreter.allocate_tensors()
+            input_index = interpreter.get_input_details()[0]["index"]
+            output_index = interpreter.get_output_details()[0]["index"]
+
+            def predict(img_array):
+                interpreter.set_tensor(input_index, img_array)
+                interpreter.invoke()
+                return interpreter.get_tensor(output_index)
+        else:
+            from tensorflow.keras.models import load_model
+
+            model = load_model(path)
+
+            def predict(img_array):
+                return model.predict(img_array, verbose=0)
+
+        return predict
+
+    def predict(self, img_array):
+        with self._lock:
+            if self._predict is None:
+                self._predict = self._load()
+            return self._predict(img_array)
+
+
+_classifier = _Classifier()
+
+
+def analyzeImage(image_path):
+    """Classify the leaf image stored at ``image_path`` and return the class name."""
+    img_array = preprocessImage(image_path)
+    predictions = _classifier.predict(img_array)
+    predicted_class = int(np.argmax(predictions, axis=1)[0])
+    return CLASSES[predicted_class]
+
 
 def change12HourTo24HourFormat(timestamp):
     return datetime.strptime(timestamp, "%I:%M %p").strftime("%H:%M")

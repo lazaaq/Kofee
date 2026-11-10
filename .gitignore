@@ -1,2 +1,10 @@
-*.jpg
 venv/
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+.env
+staticfiles/
+data/
+model/
+media/images/

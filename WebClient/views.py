@@ -1,13 +1,18 @@
-import json
+import logging
+import os
+
+from django.contrib import messages
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from django.urls import reverse
-from .helper import analyzeImage, change12HourTo24HourFormat
+from PIL import UnidentifiedImageError
+
+from .helper import ModelUnavailableError, analyzeImage, change12HourTo24HourFormat
 from .models import History, Label
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 
-# Create your views here.
+logger = logging.getLogger(__name__)
+
+
 @login_required
 def home(request):
     if request.method == 'GET':
@@ -33,26 +38,41 @@ def home(request):
                       context)
     
     elif request.method == 'POST':
+        image = request.FILES.get('image')
+        if image is None:
+            messages.error(request, "Please choose an image to diagnose.")
+            return redirect('home')
+
         new_history = History()
         new_history.userid = request.user
-        new_history.image = request.FILES['image']
+        new_history.image = image
         new_history.label_id = 2 # for temporary only
         new_history.save()
 
-        image = request.FILES['image']
-        labeledImage, file_name = analyzeImage(image)
+        try:
+            labeledImage = analyzeImage(new_history.image.path)
+        except UnidentifiedImageError:
+            new_history.image.delete(save=False)
+            new_history.delete()
+            messages.error(request, "The uploaded file is not a valid image.")
+            return redirect('home')
+        except ModelUnavailableError:
+            logger.exception("Classification model unavailable")
+            new_history.image.delete(save=False)
+            new_history.delete()
+            messages.error(request, "The diagnosis model is not available right now. Please try again later.")
+            return redirect('home')
 
-        labels = Label.objects.all()
-        for label in labels:
-            if label.name == labeledImage:
-                new_history.label_id = label.id
-                break
-            
-        new_history.filename = file_name
+        label = Label.objects.filter(name=labeledImage).first()
+        if label is not None:
+            new_history.label_id = label.id
+
+        new_history.filename = os.path.basename(new_history.image.name)
         new_history.save()
 
         return redirect('home')
 
+@login_required
 def petunjuk(request):
     template = 'dashboard/petunjuk.html'
     context = {'title': 'Petunjuk | Kofee', 'judul_halaman': "Petunjuk Penggunaan"}
@@ -61,6 +81,7 @@ def petunjuk(request):
                       template,
                       context)
 
+@login_required
 def profile(request):
     if request.method == 'GET':
         template = 'dashboard/profile.html'

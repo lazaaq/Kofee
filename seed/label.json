@@ -1,40 +1,40 @@
 [
     {
         "model": "WebClient.label",
+        "pk": 1,
         "fields": {
-            "id": 1,
             "name": "cercospora",
             "treatment": "<ol><li><b>Gunakan fungisida kimia:</b> Anda bisa menggunakan fungisida seperti mancozeb yang terdapat pada produk seperti Dhitane atau Delsene. Fungisida ini membantu mengendalikan penyakit cercospora.</li><li><b>Kurangi kelembapan:</b> Untuk mengurangi kelembapan, kurangi penyiraman tanaman dan rapikan atap peneduh agar sinar matahari bisa langsung masuk ke tanaman. Kelembapan yang terlalu tinggi dapat memperburuk penyakit cercospora.</li> <li><b>Sanitasi tanaman:</b> Gunting daun yang sudah terkena penyakit, kemudian bakar atau benamkan daun tersebut ke dalam tanah agar penyakit tidak menyebar. </li> <li><b>Atur peneduh:</b> Mengurangi jumlah naungan di sekitar tanaman dapat membantu mengurangi penyakit pada buah kopi.</li></ol> <br> <b>Referensi:</b> <br> <a href='https://repository.pertanian.go.id/server/api/core/bitstreams/1a41d808-3997-4671-b574-df32765da108/content'>https://repository.pertanian.go.id/server/api/core/bitstreams/1a41d808-3997-4671-b574-df32765da108/content</a>"
         }
     },
     {
         "model": "WebClient.label",
+        "pk": 2,
         "fields": {
-            "id": 2,
             "name": "healthy",
             "treatment": "Tidak dibutuhkan perawatan"
         }
     },
     {
         "model": "WebClient.label",
+        "pk": 3,
         "fields": {
-            "id": 3,
             "name": "miner",
             "treatment": "To effectively manage coffee leaf miner pests, several treatments can be applied as follows [49]:  <ol> <li>Spray Volume of 200 L ha⁻¹: Studies have shown that a spray volume of 200 L ha⁻¹ provides effective control of coffee leaf miner pests. This volume balances efficiency, cost, and environmental considerations, making it a suitable choice for pest management. </li> <li>Use of TVI-800075 Nozzle: This nozzle, when combined with a spray volume of 200 L ha⁻¹, offers better control compared to the JA-1 nozzle. It is particularly effective in producing coarse droplets, which enhance deposition and reduce drift.</li> <li>Avoid Excessive Use of Adjuvants:** While adjuvants can sometimes improve spray deposition, in this case, adding certain adjuvants, such as orange oil, actually reduces deposition, especially when used with electrostatic spraying. Farmers should carefully consider the type of adjuvants added, as they may decrease the effectiveness of pest control.</li> <li>Use Electrostatic Spraying for Precision Applications:** Electrostatic systems can be useful for generating fine droplets, which may improve coverage. However, these systems may be less effective when combined with certain adjuvants. It is advisable to evaluate the use of electrostatic spraying based on environmental conditions such as temperature and humidity, which can affect droplet evaporation.</li> <li>Adopt Larger Spray Volumes During Dry Weather:** Under low humidity conditions, such as in winter, using a larger spray volume with coarse droplets can help reduce evaporation and ensure better coverage and deposition on plant surfaces.</li> </ol> <br> <br> <b>Referensi:</b> <br> <a href='https://www.scielo.br/j/rceres/a/cYKhXxGwqHdy44mT8MBbbXb/?lang=en&format=html'>Effectiveness of coffee leaf miner control associated with spray deposition in coffee leaves</a>"
         }
     },
     {
         "model": "WebClient.label",
+        "pk": 4,
         "fields": {
-            "id": 4,
             "name": "phoma",
             "treatment": "Penyakit ini disebabkan oleh jamur C. Coffeicola yang bisa muncul mulai dari tahap pembibitan hingga tanaman dewasa, serta dapat menyerang buah kopi. Pada daun yang terinfeksi, muncul bercak kuning yang dikelilingi oleh lingkaran berwarna kuning. Buah yang terserang akan menunjukkan bercak cokelat, biasanya pada sisi yang lebih banyak terkena sinar matahari. Bercak ini dapat membusuk hingga mengenai biji, yang pada akhirnya mengurangi kualitas kopi. Penyakit ini sering ditemukan pada tanaman yang kurang terawat, dan penyebarannya didukung oleh kondisi lingkungan yang lembap serta pola tanam yang kurang optimal [50]. <br> Penyakit ini menyebar melalui spora yang terbawa oleh angin, aliran air hujan, dan alat-alat pertanian. Pengendaliannya dilakukan dengan menjaga kebersihan kebun serta membuang bagian tanaman yang terinfeksi, kemudian menguburnya di tanah. Mengurangi kelembapan kebun bisa dilakukan dengan memangkas tanaman, mengatur naungan, dan membuat saluran drainase. Pemupukan yang tepat serta penggunaan bibit sehat juga dianjurkan untuk mencegah penyakit ini. <br> <br> <b>Referensi:</b> <br> <a href='https://repository.pertanian.go.id/server/api/core/bitstreams/cd0beb35-de20-46bf-af2d-dc202d9642d3/content'>https://repository.pertanian.go.id/server/api/core/bitstreams/cd0beb35-de20-46bf-af2d-dc202d9642d3/content</a>"
         }
     },
     {
         "model": "WebClient.label",
+        "pk": 5,
         "fields": {
-            "id": 5,
             "name": "rust",
             "treatment": "<ol><li>   <b>Gunakan jenis kopi yang tahan penyakit:</b> Ada beberapa jenis kopi yang tahan terhadap karat daun, seperti varietas S795 dan USDA762. Menanam kopi dari varietas ini bisa membantu mencegah serangan penyakit.</li>   <li><b>Lakukan perawatan rutin pada tanaman:</b> Perawatan teknis seperti membersihkan gulma, memberikan pupuk, memangkas cabang yang tidak perlu, dan mengelola naungan tanaman secara baik bisa mengurangi serangan karat daun.</li><li>    <b>Gunakan fungisida alami:</b> Ekstrak biji mahoni dengan konsentrasi 0,1-0,2% telah terbukti efektif mengurangi penyakit karat daun. Ini bisa jadi alternatif yang aman dan alami.</li><li>   <b>Penggunaan fungisida kimia:</b> Jika perlu menggunakan fungisida kimia, pilihlah yang mengandung bahan tembaga, seperti tembaga oksida atau tembaga sulfat. Fungisida ini bekerja dengan baik jika diaplikasikan sebelum daun terinfeksi (sebagai pencegahan). Namun, gunakan dengan hati-hati karena pemakaian berlebihan dapat merusak tanah dan lingkungan sekitar. Misalnya, Nordox atau Kocide dapat digunakan dengan konsentrasi 0,3%, setiap dua minggu sekali. Untuk fungisida sistemik seperti Bayleton atau Tilt, gunakan dengan konsentrasi 0,1% satu atau dua kali aplikasi.</li></ol> <br> <br> <b>Referensi:</b> <br> <a href='https://repository.pertanian.go.id/server/api/core/bitstreams/1a41d808-3997-4671-b574-df32765da108/content'>https://repository.pertanian.go.id/server/api/core/bitstreams/1a41d808-3997-4671-b574-df32765da108/content</a>"
         }

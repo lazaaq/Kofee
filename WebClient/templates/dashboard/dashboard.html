@@ -10,11 +10,14 @@
           <h6 class="text-capitalize">Disease Prediction</h6>
         </div>
         <div class="card-body py-0">
+          {% for message in messages %}
+            <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} text-white text-sm py-2 my-2" role="alert">{{ message }}</div>
+          {% endfor %}
           <form method="POST" action="" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="form-group">
                 <label for="image">Upload Image</label>
-                <input name="image" type="file" class="form-control my-2" id="inputImage">
+                <input name="image" type="file" accept="image/*" required class="form-control my-2" id="inputImage">
             </div>
             <button type="submit" class="btn btn-primary">Start Diagnose</button>
           </form>
